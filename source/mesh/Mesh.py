@@ -64,8 +64,8 @@ class Mesh:
         self.vertices = vertices
         self.faces = faces
         self.build_acceleration_structures()
-        self.edge_mask = np.ones((self.edges.shape[0]), dtype=np.bool)
-        self.vertex_mask = np.ones((self.vertices.shape[0]), dtype=np.bool)
+        self.edge_mask = np.ones((self.edges.shape[0]), dtype=bool)
+        self.vertex_mask = np.ones((self.vertices.shape[0]), dtype=bool)
         self.num_edges = self.edges.shape[0]
 
     def build_acceleration_structures(self):
@@ -229,8 +229,8 @@ class Mesh:
         self.edge_lookup = self.edge_lookup[self.edge_mask]
 
         # Reset the masks.
-        self.edge_mask = np.ones((self.edges.shape[0],), dtype=np.bool)
-        self.vertex_mask = np.ones((self.vertices.shape[0],), dtype=np.bool)
+        self.edge_mask = np.ones((self.edges.shape[0],), dtype=bool)
+        self.vertex_mask = np.ones((self.vertices.shape[0],), dtype=bool)
 
     def generate_face_areas_normals(self, vertices):
         """

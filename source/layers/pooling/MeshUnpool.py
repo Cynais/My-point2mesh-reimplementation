@@ -25,8 +25,8 @@ class MeshUnpool(Layer):
         mesh.edge_to_neighbors = snapshot.edge_to_neighbors
         mesh.edge_lookup = snapshot.edge_lookup
         mesh.vertex_to_edges = snapshot.vertex_to_edges
-        mesh.edge_mask = np.ones((mesh.edges.shape[0]), dtype=np.bool)
-        mesh.vertex_mask = np.ones((mesh.vertices.shape[0]), dtype=np.bool)
+        mesh.edge_mask = np.ones((mesh.edges.shape[0]), dtype=bool)
+        mesh.vertex_mask = np.ones((mesh.vertices.shape[0]), dtype=bool)
         mesh.num_edges = mesh.edges.shape[0]
 
         # Use the snapshot's relationships to unpool the features.
