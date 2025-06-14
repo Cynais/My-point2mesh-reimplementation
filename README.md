@@ -22,7 +22,10 @@ This implementation runs slower than the original implementation and doesn't inc
 
 ### Creating a Virtual Environment
 
-To create a virtual environment, run `python3 -m venv venv`. Then, do `source venv/bin/activate` (or equivalent) and `pip3 install -r requirements.txt` to install the project's dependencies.
+This project now targets **Python 3.12** and recent versions of TensorFlow and
+NumPy. Create a virtual environment with `python3 -m venv venv`, activate it
+with `source venv/bin/activate` (or equivalent) and then run `pip3 install -r
+requirements.txt` to install the project's dependencies.
 
 ### Manifold Software Dependency
 
@@ -102,9 +105,9 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 
 cd ~/point2mesh-reimplementation
-pip3 install trimesh
-rm -rf /opt/conda/lib/python3.7/site-packages/cloudpickle
-pip3 install cloudpickle==1.4.0
+ pip3 install trimesh
+ rm -rf /opt/conda/lib/python3*/site-packages/cloudpickle
+ pip3 install cloudpickle==1.4.0
 sudo apt-get install libopenexr-dev
 sudo apt-get install openexr
 pip3 install tensorflow-graphics

@@ -2,7 +2,6 @@ import time
 import sys
 import tensorflow as tf
 import numpy as np
-from tensorflow.python.keras.backend import dtype
 import trimesh
 import colorama
 import os

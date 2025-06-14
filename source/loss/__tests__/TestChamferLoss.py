@@ -1,5 +1,4 @@
 import unittest
-from tensorflow.python.keras.regularizers import get
 import trimesh
 import numpy as np
 from typing import Tuple
