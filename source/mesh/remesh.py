@@ -5,17 +5,11 @@ import numpy as np
 
 MANIFOLD_SOFTWARE_DIR = "Manifold/build"
 
-
-def remesh(
-    vertices: np.ndarray,
-    faces: np.ndarray,
-    num_faces=2000,
-):
+def remesh(vertices: np.ndarray, faces: np.ndarray, num_faces=2000):
     # Write the original mesh as OBJ.
     original_file = random_file_name("obj")
-    with open(original_file, "w") as f:
-        mesh = trimesh.Trimesh(vertices=vertices, faces=faces)
-        f.write(trimesh.exchange.obj.export_obj(mesh))
+    mesh = trimesh.Trimesh(vertices=vertices, faces=faces)
+    mesh.export(original_file)
 
     # Create a manifold of the original file.
     manifold_file = random_file_name("obj")
@@ -31,16 +25,18 @@ def remesh(
     )
     os.system(cmd)
 
-    # Read the simplified manifold.
-    with open(simplified_file, "r") as f:
-        mesh = trimesh.exchange.obj.load_obj(f)
+    # Load the simplified manifold robustement
+    loaded_mesh = trimesh.load(simplified_file, force='mesh')
+    
+    if not isinstance(loaded_mesh, trimesh.Trimesh):
+        raise ValueError("Failed to load simplified mesh")
 
     # Prevent file spam.
     os.remove(original_file)
     os.remove(manifold_file)
     os.remove(simplified_file)
 
-    return mesh["vertices"], mesh["faces"]
+    return loaded_mesh.vertices, loaded_mesh.faces
 
 
 def random_file_name(ext, prefix="tmp_"):
